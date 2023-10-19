@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2023/10/18/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>基于Hexo+Github Pages部署属于自己的博客(从零开始)</title>
+    <url>/2023/10/18/Hexo_on_GitHub/</url>
+    <content><![CDATA[<h2 id="从零开始部署自己的博客"><a href="#从零开始部署自己的博客" class="headerlink" title="从零开始部署自己的博客"></a>从零开始部署自己的博客</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>笔者上大学之后能自由支配的时间增加了很多，兴趣使然，逐渐开始折腾各种各样的东西，但是折腾的成果又缺少一个可以整理的地方。写成笔记留在电脑上只能让自己一个人看到，难免缺少一直写下去的动力，而且笔者又有把一些学到的东西用自己的语言讲出来的习惯。碰巧发现自己建立博客的过程里能学到不少编程的知识，也能增强动手能力，更关键的是能把一些咋现的灵光给记录下来。那说干就干，笔者索性就按照网上的教程搭建了一个博客。经过一番努力之后，如你所见，博客搭建了起来，但过程坎坷，遇到各种各样的问题，所幸，最终成功完成。于是这篇Blog作为开题之作，就拿来记录一下搭建的过程，也希望能为有建立自己的Blog的想法的人给予帮助。</p>
+<h3 id="建站总说"><a href="#建站总说" class="headerlink" title="建站总说"></a>建站总说</h3><p>博客的搭建基于<code>Hexo+Github Pages</code>的方案，选择<code>Hexo</code>是因为相比于<code>PHP</code>写的<code>WordPress</code>，用<code>CSS</code>写的<code>Hexo</code>拥有更好的性能，而且使用人数众多，Community里的各种主题也设计的很不错（造好轮子直接用真香）。另一个框架<code>Hugo</code>则是因为使用人数较少，中文文档缺乏，遇到问题不方便解决。综上，笔者最终选择了<code>Hexo</code>的方案。</p>
+<p>另一个是网站的托管问题，一种方法是利用<code>Github Pages</code>或者<code>Gitee Pages</code>托管，优点在于不需要自己对服务器进行运维，也不需要考虑网站被攻击的风险，配置起来简便，相比另一种方法快速很多，最重要的是，这种方案是免费的，还能满足绝大部分的需求，但缺点是由于众所周知的原因，<code>Github</code>并不能提供很好的连接体验。另一种方法则是购买云服务器（阿里云，腾讯云等），这就稍显麻烦，首先购买服务器需要钱（腾讯云学生机至少也要一年一百出头），其次是购买域名也要钱，再三是部署自己的博客还需要额外配置<code>NGINX</code>等等工具，稍显麻烦。但优点在于你可以享受自由度极高的配置环境，后期可以添加各种各样想要的功能。对于一个乐于折腾技术的人来说，这点的吸引力相当高。</p>
+<p>但对于绝大多数人来讲，直接在<code>Github</code>上托管会是最简单最快速的方法，又能实现大部分需要的功能。因此笔者选择从<code>Github Pages</code>入门，等到积累一定技术，时机成熟，再自己搭建服务器。</p>
+<h2 id="环境安装-Windows"><a href="#环境安装-Windows" class="headerlink" title="环境安装(Windows)"></a>环境安装(Windows)</h2><h3 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h3><p>打开<a href="https://git-scm.com/downloads"><code>Git</code>官网</a>，下载对应系统版本的软件并打开，一路点击<code>Next</code>，遇到需要设置安装路径的地方自行设置即可，耐心等待安装完成即可。</p>
+<p>笔者这里给出安装过程中的部分界面，读者可以进行参考。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/1.png"
+                      alt="Pages 1" style="zoom:38%;" 
+                >
+
+<p>此处可以选择在默认的基础上勾选<code>Add a Git Bash Profile to Windows Terminal</code>的选项，将<code>Git Bash</code>功能添加到系统的<code>Terminal</code>里面。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/2.png"
+                      alt="Pages 2" style="zoom:38%;" 
+                >
+
+<p>此处是在启动菜单里添加<code>Git</code>程序组，建议保持默认。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/3.png"
+                      alt="Pages 3" style="zoom:38%;" 
+                >
+
+<p>这里选择<code>Git</code>的默认编辑程序，按照默认选择<code>Vim</code>即可，部署博客的过程中不太用的到这个功能。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/4.png"
+                      alt="Pages 4" style="zoom:38%;" 
+                >
+
+<p>这里设置<code>Git</code>将本地代码推送至<code>GitHub</code>上的默认主分支，直接让<code>Git</code>智能判定即可，一般一个新仓库的主分支都是<code>master</code>或者<code>main</code>。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/5.png"
+                      alt="Pages 5" style="zoom:38%;" 
+                >
+
+<p>这里设置系统环境变量，也就是可以如何启动<code>Git</code>程序，从上到下的选项依次是：只能从<code>Git Bash</code>命令提示符窗口启动；既可以在命令提示符窗口也可以在第三方软件中启动，（如<code>Powershell</code>等），只添加部分<code>Git</code>组件到系统环境变量中；覆写系统环境变量，将所有的<code>Git</code>组件和<code>Unix tools</code>全部添加到系统环境变量中，可能引发冲突，非高手不要选择。这里选择推荐的选项即可。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/6.png"
+                      alt="Pages 6" style="zoom:38%;" 
+                >
+
+<p>这里选择<code>Git</code>使用的<code>OpenSSH</code>程序，用于连接远程服务器。如果先前电脑上有配置过，可以选择使用外部<code>OpenSSH</code>，一般推荐选择<code>Git</code>安装程序中自带的<code>OpenSSH</code>，省去配置的麻烦。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/7.png"
+                      alt="Pages 7" style="zoom:38%;" 
+                >
+
+<p>这里选择<code>HTTPS</code>传输协议后端，选择<code>OpenSSL Library</code>即可，就是一个公用的<code>SSL</code>库，完全足够我们使用。第二个选项一般用于自己有<code>CA Certificates</code>的情况（但这一般都是公司才用的到）。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/8.png"
+                      alt="Pages 8" style="zoom:38%;" 
+                >
+
+<p>这里选择<code>Git</code>处理代码行结束的方式，选择第一个选项即可，符合日常使用<code>Windows</code>系统的习惯。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/9.png"
+                      alt="Pages 9" style="zoom:38%;" 
+                >
+
+<p>这里设置<code>Git Bash</code>的运行窗口，可以运行在自带的<code>MinTTY</code>终端里（兼容性较好），也可以运行在<code>Windows Terminal</code>里面，按需选择即可，两种方式的优缺点都在选项里写着。推荐使用自带的终端。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/10.png"
+                      alt="Pages 10" style="zoom:38%;" 
+                >
+
+<p>这里选择<code>git pull</code>命令的默认操作，按照程序默认选择即可。这是用于<code>Git</code>的其他功能，与搭建博客关系不大。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/11.png"
+                      alt="Pages 11" style="zoom:38%;" 
+                >
+
+<p>这是配置<code>Git</code>的凭证管理，选择安装这个程序即可。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/12.png"
+                      alt="Pages 12" style="zoom:38%;" 
+                >
+
+<p>这里是安装一些额外选项，不需要关心，用得到的人自然知道该怎么选择。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/13.png"
+                      alt="Pages 13" style="zoom:38%;" 
+                >
+
+<p>这里选择是否开启一些实验功能，这些功能都不稳定，都不需要勾选。</p>
+<p>最后执行安装，安装完成后如图，关闭安装程序即可</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/14.png"
+                      alt="Pages 14" style="zoom:38%;" 
+                >
+
+<p>安装完成后，按住<code>Win+R</code>组合键，输入<code>cmd</code>并按回车，在打开的终端中输入<code>git -v</code>命令，如果显示版本号，则表明安装成功，如以下形式：</p>
+<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">git version <span class="number">2.42</span>.<span class="number">0</span>.windows.<span class="number">2</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><p><code>Node.js</code>是一个开源的<code>Javascript</code>框架，允许用户在这个框架上进行开发。我们所使用的<code>Hexo</code>就是基于这个框架的。</p>
+<p>打开<a href="https://nodejs.org/zh-cn"><code>Node.js</code></a>官网，根据系统版本下载长期维护版（LTS）即可。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/15.png"
+                      alt="Pages 15" style="zoom:50%;" 
+                >
+
+<p>安装程序一路按<code>Next</code>，并选择合适的安装位置，出现以下界面时按需要勾选。如果电脑上已经安装了<code>C/C++</code>编译器，该选项可以不勾选；如果没有安装，则勾选该选项，否则程序的一些模块可能不能正常编译运行。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/16.png"
+                      alt="Pages 16" style="zoom:38%;" 
+                >
+
+<p>安装完成后关闭安装程序即可。按住<code>Win+R</code>组合键，输入<code>cmd</code>并按回车，在打开的窗口中输入<code>node -v</code>并回车，再输入<code>npm -v</code>并回车，均出现版本号则表明安装成功，如</p>
+<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">node <span class="literal">-v</span></span><br><span class="line"> v18.<span class="number">18.2</span></span><br><span class="line">npm <span class="literal">-v</span></span><br><span class="line"> <span class="number">9.8</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Hexo安装"><a href="#Hexo安装" class="headerlink" title="Hexo安装"></a>Hexo安装</h3><p>接下来安装博客框架<code>Hexo</code>，自己新建一个专门用来存放博客的文件夹，如笔者的文件夹路径是<code>D:\sksblog</code>，打开该文件夹，右键空白地方打开右键菜单，选择<code>Open Git Bash Here</code>，如下图所示，打开Git窗口。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/18.png"
+                      alt="Pages 18" style="zoom:40%;" 
+                >
+
+<p>接着在窗口中输入以下代码</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></div>
+
+<p>等待安装完成后输入<code>hexo -v</code>，得到版本号即表明安装成功。接下来初始化<code>Hexo</code>框架（继续在<code>Git</code>窗口中操作）。输入以下命令，其中<code>blog</code>可以替换为任意自己想取的名字。为表述方便，以下均用<code>blog</code>表示存博客的文件夹</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure></div>
+
+<p>程序初始化完之后打开文件资源管理器，可以发现在<code>Hexo</code>根目录，即<code>sksblog</code>下新建了一个文件夹<code>blog</code>，里面就是我们即将用来写博客的地方，里面有一些文件，分别对应的功能如下：</p>
+<ul>
+<li><code>public</code>: 存放生成的网页页面文件</li>
+<li><code>scaffolds</code>:  生成文章的一些模板</li>
+<li><code>source</code>:  存放写的文章和图片等等</li>
+<li><code>themes</code>:  存放页面主题</li>
+<li><code>node_modules</code>:  存放依赖包</li>
+<li><code>_config.yml</code>: 博客的配置文件，设置页面格式时会经常用到</li>
+</ul>
+<p>初始化完成之后可以正式生成网页文件了，先在<code>Git</code>窗口中切换工作目录到刚刚创建的博客文件夹中，输入<code>cd blog</code>，这里的<code>blog</code>替换为自己设定的博客文件名。再逐行执行以下代码（<code>g</code>表示<code>generate</code>，生成页面文件；<code>s</code>表示<code>server</code>，启动本地网页服务器）。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></div>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/17.png"
+                      alt="Pages 17" style="zoom:40%;" 
+                >
+
+<p>显示如图代码表示启动成功。打开浏览器，输入<code>localhost:4000</code>，即可访问刚刚搭建出来的博客网站，这是一个默认的博客模板，稍后将会介绍更换模板主题的方法。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/23.png"
+                      alt="Pages 23" style="zoom:50%;" 
+                >
+
+<p>当博客编辑完成后，可以按<code>Ctrl+C</code>来关闭本地博客服务器。</p>
+<h2 id="将博客托管到GitHub上"><a href="#将博客托管到GitHub上" class="headerlink" title="将博客托管到GitHub上"></a>将博客托管到GitHub上</h2><h3 id="新建GitHub仓库"><a href="#新建GitHub仓库" class="headerlink" title="新建GitHub仓库"></a>新建GitHub仓库</h3><p>打开<a href="(https://github.com/)">GitHub</a>，自行根据页面提示注册一个<code>GitHub</code>账号并登录，进入到自己的<code>Dashboard</code>，点击右上角的个人头像，找到并打开菜单里的<code>Your Repositories</code>。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/20.png"
+                      alt="Pages 20" style="zoom:40%;" 
+                >
+
+<p>在新的页面右上角找到<code>New</code>，如下图所示建立一个新的仓库。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/21.png"
+                      alt="Pages 21" style="zoom:50%;" 
+                >
+
+<p>其中<code>Repository name*</code>填写<code>yourname.github.io</code>，这里的<code>yourname</code>一定是你的<code>GitHub</code>用户名，比如笔者是<code>superiorskk</code>，这个网址就是一会你的博客的网址。</p>
+<p>接下来的<code>Description</code>选填，就是一个备注的作用，像笔者要注明这是一个博客仓库，就写个<code>blog</code>作为备注。</p>
+<p>接着的选项一定要选<code>Public</code>，允许所有人查看你的仓库，否则你的网站就只有你自己能看到了。</p>
+<p>接下来的选项都是选填，通常保持默认即可。<code>README</code>文件是给你的仓库添加一个说明，这个说明会以文件的形式存在你的仓库里。<code>.gitignore</code>不会用到，可以留空。<code>license</code>是你的仓库里的代码遵循的开源准则，这些准则规定了其他使用者对你的代码拥有的权利，可以不选，也可以选择<code>GPL3.0</code>，可以自行了解并按需选择即可。</p>
+<p>最后点击<code>Create Repository</code>新建仓库，跳转一个新的页面如下。复制图中红线遮住部分的网址，一会是你推送博客文件到GitHub上的网址。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/22.png"
+                      alt="Pages 22" style="zoom:50%;" 
+                >
+
+<p>这个时候你就可以打开刚刚新建的网址<code>yourname.github.io</code>，会显示以下页面，这是正常的，因为此时你还没有将任何博客文件传到<code>GitHub</code>上。到此，新建仓库的步骤就完成了。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/24.png"
+                      alt="Pages 24" style="zoom:50%;" 
+                >
+
+<h3 id="生成SSH并添加到GitHub"><a href="#生成SSH并添加到GitHub" class="headerlink" title="生成SSH并添加到GitHub"></a>生成SSH并添加到GitHub</h3><p>从本地电脑连接远程服务器并传输文件需要用SSH密钥验证身份，因此需要创建一个独一无二的SSH密钥。在<code>Hexo</code>根目录，如笔者的<code>D:\sksblog</code>，从右键菜单中打开<code>Git Bash</code>，逐行执行以下命令：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;yourname&quot;</span><br><span class="line">git config --global user.email &quot;youremail&quot;</span><br></pre></td></tr></table></figure></div>
+
+<p>这里的<code>yourname</code>是你的<code>GitHub</code>用户名，<code>youremail</code>是你创建<code>GitHub</code>所用的邮箱，执行以上代码是在本地新建你的<code>GitHub</code>用户信息，从而与<code>GitHub</code>网站上的用户信息匹配验证。</p>
+<p>确认是否输入正确可以用以下两条代码查看</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure></div>
+
+<p>然后开始创建SSH密钥。继续输入以下指令：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youremail&quot;</span><br></pre></td></tr></table></figure></div>
+
+<p>此处<code>youremail</code>同上。接着按照提示输入<code>y</code>，同意创建。创建完成后打开下图中红色框起处对应的文件夹，选择用记事本文件打开<code>id_rsa.pub</code>文件，复制里面的所有内容。这些内容就是生成的SSH密钥</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/28.png"
+                      alt="Pages 28" style="zoom:50%;" 
+                >
+
+<p>接着打开<a href="https://github.com/"><code>GitHub</code></a>，点击头像，在打开的菜单中选择<code>Settings</code>，在新打开的页面左侧栏中找到<code>SSH and GPG keys</code>并打开。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/30.png"
+                      alt="Pages 30" style="zoom:40%;" 
+                >
+
+<p>点击<code>SSH Keys</code>右上角的<code>New</code>新建一个SSH密钥，如下图所示。<code>Title</code>处随意填写，只是个备注，而<code>Key</code>处粘贴上刚刚从<code>id_rsa.pub</code>文件中复制的内容，最后点击<code>Add SSH key</code>。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/31.png"
+                      alt="Pages 31" style="zoom:50%;" 
+                >
+
+<p>添加完成后回到<code>Git Bash</code>窗口，输入以下代码并执行</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure></div>
+
+<p>可能会出现下图所示提醒，输入<code>yes</code>并回车即可，确认连接你的<code>GitHub</code>账户。当程序提示<code>You&#39;ve successfully authenticated</code>即表明连接成功，本地<code>Git</code>已经成功连接到你的<code>GitHub</code>账户。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/32.png"
+                      alt="Pages 30" style="zoom:60%;" 
+                >
+
+<h3 id="将Hexo部署到GitHub"><a href="#将Hexo部署到GitHub" class="headerlink" title="将Hexo部署到GitHub"></a>将Hexo部署到GitHub</h3><p>在Git Bash窗口中输入以下命令：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></div>
+
+<p>等待程序安装<code>Hexo</code>部署工具，该过程建议开启<del>科学上网</del>全局代理功能，以免部署过程出现各种网络连接错误。安装完成后，打开<code>Hexo</code>根目录，如笔者的<code>D:/sksblog</code>，打开<code>_config.yml</code>文件（选择记事本打开即可），修改最后一行配置为</p>
+<div class="highlight-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">https://github.com/superiorskk/superiorskk.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></div>
+
+<p>其中<code>repository</code>后面的网址换为前面新建仓库时提到的，让复制的有红线覆盖的内容。注意<code>repository:</code>的冒号后面有一个空格，不要漏掉也不要增加。修改后保存配置文件。</p>
+<p>接着在你自己的博客文件夹，如笔者的<code>D:/sksblog/blog</code>文件夹中，从右键菜单打开<code>Git Bash</code>，依次执行以下命令：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo c</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></div>
+
+<p>其中<code>hexo c</code>清除之前所有生成的博客文件，也可以不加，<code>hexo g</code>是生成新的博客文件， <code>hexo d</code>是将博客部署到<code>GitHub</code>上。根据程序提示，部署成功后等待一段时间，打开<code>GitHub</code>，找到<code>Your Repositories</code>，打开刚刚新建的仓库，会发现博客文件已经全部上传到了这个仓库里，此时在浏览器中输入仓库名<code>yourname.github.io</code>，就可以看到刚刚部署到<code>GitHub</code>上的博客啦！如下图所示。到此为止，部署已经全部成功，现在就已经成功搭建起了自己的博客，接下来的就是美化和写内容啦！</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Hexo_on_GitHub/23.png"
+                      alt="Pages 23" style="zoom:50%;" 
+                >
+
+]]></content>
+      <categories>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>GitHub Pages</tag>
+      </tags>
+  </entry>
+</search>
